@@ -1,4 +1,4 @@
-Instructions for Transferring The Brain Exported Data to an Obsidian Vault
+# Instructions for Transferring The Brain Exported Data to an Obsidian Vault
 
 ## Context
 
