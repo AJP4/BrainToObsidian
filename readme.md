@@ -71,3 +71,10 @@ You may modify this file to:
 #### `types_prepend_text`
 
 * If you set `types_to_tags` as True then text assigned to this variable is prepended to the tag name so that it can be identified in Obsidian tag lists
+
+## File Wrangling
+
+THis migration script may not do all that you need and more data wrangling is required.  So rather than script every edge case and create an overly complex end user configuration file it might be best to use some existing obsidian plugins.  I have found the following useful (they can be found via the community plugin browser):
+
+* `Tag Wrangler`:  refactoring tags
+* `Find orphaned files and broken links`:  I had many thoughts with very little content which then created files in Obsidian.  I used this to find and delete these files and leave behind link references without files, so should I need them at later date I can click the link and create one
