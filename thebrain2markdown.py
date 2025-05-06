@@ -475,7 +475,7 @@ output_files = {
 }
 util.serialise_dicts_to_json(output_files)
 
-
+print("Generating Markdown files...")
 generate_markdown_files(
     nodes_json,
     list_of_tags,
@@ -484,3 +484,5 @@ generate_markdown_files(
     TheBrain_export_dir,
     obsidian_vault_directory,
 )
+
+print("Markdown files generated successfully.")
