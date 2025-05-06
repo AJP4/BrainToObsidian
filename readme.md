@@ -78,3 +78,9 @@ THis migration script may not do all that you need and more data wrangling is re
 
 * `Tag Wrangler`:  refactoring tags
 * `Find orphaned files and broken links`:  I had many thoughts with very little content which then created files in Obsidian.  I used this to find and delete these files and leave behind link references without files, so should I need them at later date I can click the link and create one
+
+## What doesn't process well
+
+* Brain note page breaks
+* Brain tables
+* 

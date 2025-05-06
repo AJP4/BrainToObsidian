@@ -369,6 +369,7 @@ def generate_markdown_files(
                         notes_content = re.sub(
                             r"!\[.*?\]\(\.data/md-images/([^/]+\.(?:png|jpg|jpeg|gif|bmp|tiff|svg))(?:#.*)?\)",
                             r"![[\1|200]]",
+                            r"\n![[\1|200]]",
                             notes_content,
                         )
                         md_file.write(notes_content)
@@ -470,7 +471,7 @@ output_files = {
 }
 util.serialise_dicts_to_json(output_files)
 
-
+print("Generating Markdown files...")
 generate_markdown_files(
     nodes_json,
     list_of_tags,
@@ -479,3 +480,5 @@ generate_markdown_files(
     TheBrain_export_dir,
     obsidian_vault_directory,
 )
+
+print("Markdown files generated successfully.")
