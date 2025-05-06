@@ -45,7 +45,7 @@ links_path = "./JSONS/TB_Refactored_links.json"
 attachments_path = "./JSONS/TB_Refactored_Attachments.json"
 
 # Invalid file characters
-invalid_file_characters = ["/", "*", "?", "|", "\\", '"', "<", ">", ":", ";", "#"]
+invalid_file_characters = ["/", "*", "?", "|", "\\", '"', "<", ">", ":", ";", "#", "@"]
 # List of common image file extensions
 file_extensions_images = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tiff", ".svg"]
 
