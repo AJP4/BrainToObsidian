@@ -1,4 +1,4 @@
-Instructions for Transferring The Brain Exported Data to an Obsidian Vault
+# Instructions for Transferring The Brain Exported Data to an Obsidian Vault
 
 ## Context
 
@@ -66,4 +66,8 @@ You may modify this file to:
 
 #### `types_to_tags`
 
-* The `types_to_tags` variable is intended for a future feature to migrate Brain types as tags, but it is currently inactive.
+* The `types_to_tags` variable is used to indicate that whether you want Brain Types migrated as tags in Obsidian.
+
+#### `types_prepend_text`
+
+* If you set `types_to_tags` as True then text assigned to this variable is prepended to the tag name so that it can be identified in Obsidian tag lists

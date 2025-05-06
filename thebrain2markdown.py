@@ -17,6 +17,7 @@ from TheBrainConstants import (
 import re
 import utility as util
 import enduser_config as config
+import migration_functions as mig_funcs
 
 
 # Directories for file migration
@@ -404,6 +405,11 @@ def generate_markdown_files(
         except Exception as e:
             logging.error(f"Failed to create markdown file for {node_id}. Error: {e}")
 
+
+if config.types_to_tags:
+    mig_funcs.convert_types_to_tags(
+        thoughts_path, links_path, output_directory + "/originals"
+    )
 
 create_links_json_dic(links_path, links_json)
 create_attachments_json_dic(attachments_path, attachments_json)
