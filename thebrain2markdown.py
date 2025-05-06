@@ -271,6 +271,21 @@ def build_breadcrumb_path(node_id, list_of_tags, current_path=None):
     return current_path
 
 
+def process_tag_type_names(list_of_tags, types_prepend_text):
+    """
+    Updates the TagName property in the list_of_tags dictionary.
+    If a TagName starts with the types_prepend_text string, it removes all occurrences
+    of the types_prepend_text and prepends the result with types_prepend_text + "/".
+    """
+    for node_id, node_data in list_of_tags.items():
+        tag_name = node_data.get("TagName", "")
+        if tag_name.startswith(types_prepend_text):
+            # Remove all occurrences of types_prepend_text
+            updated_tag_name = tag_name.replace(types_prepend_text, "")
+            # Prepend the result with types_prepend_text + "/"
+            node_data["TagName"] = f"{types_prepend_text}/{updated_tag_name}"
+
+
 def generate_markdown_files(
     nodes_json, list_of_tags, links_json, thoughts_json, source_dir, output_dir
 ):
@@ -431,6 +446,10 @@ for node_id, node_data in list_of_tags.items():
     breadcrumb_path = build_breadcrumb_path(node_id, list_of_tags)
     # Join the breadcrumb path with "/" and update the "TagName"
     node_data["TagName"] = "/".join(breadcrumb_path)
+
+# remove repetitive occurances of the prend text for Types and add a single prepend text as a prefix
+if config.types_to_tags:
+    process_tag_type_names(list_of_tags, config.types_prepend_text)
 
 # Save the updated tags_json back to a file
 output_path = "./JSONS/updated_tags_json.json"
