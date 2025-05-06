@@ -367,13 +367,8 @@ def generate_markdown_files(
                         )
                         # Replace local image references with ![[filename|200]]
                         notes_content = re.sub(
-<<<<<<< HEAD
                             r"!\[.*?\]\(\.data/md-images/([^/]+\.(?:png|jpg|jpeg|gif|bmp|tiff|svg))(?:#.*)?\)",
                             r"![[\1|200]]",
-=======
-                            r"\s*!\[\s*.*?\]\(\s*\.data/md-images/([^/]+\.(?:png|jpg|jpeg|gif|bmp|tiff|svg|webp))(?:#.*)?\)",
-                            r"\n![[\1|200]]",
->>>>>>> debug
                             notes_content,
                         )
                         md_file.write(notes_content)
