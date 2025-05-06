@@ -1,0 +1,6 @@
+.obsidian/
+__pycache__/
+export/
+JSONS/
+logs/
+obsidian/
