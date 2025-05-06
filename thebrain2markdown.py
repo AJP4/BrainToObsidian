@@ -350,10 +350,10 @@ def generate_markdown_files(
                         notes_content = re.sub(
                             r"\[([^\]]+)\]\(brain://[^\)]+\)", r"[[\1]]", notes_content
                         )
-                        # Replace local image references with ![[filename]]
+                        # Replace local image references with ![[filename|200]]
                         notes_content = re.sub(
-                            r"!\[.*?\]\(\.data/md-images/([^/]+\.(?:png|jpg|jpeg|gif|bmp|tiff|svg))\)",
-                            r"![[\1]]",
+                            r"!\[.*?\]\(\.data/md-images/([^/]+\.(?:png|jpg|jpeg|gif|bmp|tiff|svg))(?:#.*)?\)",
+                            r"![[\1|200]]",
                             notes_content,
                         )
                         md_file.write(notes_content)
