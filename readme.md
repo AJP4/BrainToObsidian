@@ -39,9 +39,20 @@ other files in this folder are generally used for debugging purposes or temporar
 
 You can edit this file to:
 
+#### dir_location_of_Brain_folder
+
 - Reference the folder containing your exported Brain files and folder:
   - For Example dir_location_of_Brain_folder = "./export" looks in the root of the folders containing the python scripts for a folder called "export"
+
+#### dir_location_of_obsidian_vault
+
 - Referncing your Obsidian Vault where you want your Brain data migrated to:
   - For Example dir_location_of_obsidian_vault = "./obsidian" uses a called "obsidian" in the root of the folder containing the python scripts
+
+#### empty_obsidian_vault_dir_prior_to_running_the_script
+
 - I have found that I need to run Brain exports and migrations a number of times as I discover how my Brain is used with reference to how the migrated data works in Obsidian.  I therefore the script clears out the contents of the dir_location_of_obsidian_vault folder but leaving the contents of the Obsidian folder ".obsidian" else it would be necessary to reconfigure and load plugins after each migration.  However, you might not want to clear out the contents of the folder (maybe if you are migrating to an existing obsidian vault - which I have not tested, but should be possible, but probably quite dangerous, so do some back-ups).  Whether the obsidian vault is cleared down or not before migration is set with the variable empty_obsidian_vault_dir_prior_to_running_the_script to either true of false
+
+#### types_to_tags
+
 - The type_to_tags is for an idea I have of migrating Brain type as tags so at the moment it doesn't do anything.
