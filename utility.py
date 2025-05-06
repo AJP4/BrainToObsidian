@@ -51,10 +51,10 @@ def clear_folder(folder_path, exclude_list=None):
             try:
                 if os.path.isfile(item_path) or os.path.islink(item_path):
                     os.unlink(item_path)
-                    logging.info(f"Deleted file: {item_path}")
+                    # logging.info(f"Deleted file: {item_path}")
                 elif os.path.isdir(item_path):
                     shutil.rmtree(item_path)
-                    logging.info(f"Deleted folder: {item_path}")
+                    # logging.info(f"Deleted folder: {item_path}")
             except Exception as e:
                 logging.error(f"Failed to delete {item_path}. Error: {e}")
         logging.info(
