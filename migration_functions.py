@@ -34,7 +34,7 @@ def convert_types_to_tags(thoughts_file, links_file, backup_folder):
         if thought.get("Kind") == ThoughtKind.TYPE:
             thought["Kind"] = ThoughtKind.TAG
             if "Name" in thought:
-                thought["Name"] = f{config.types_prepend_text}{thought['Name']}"
+                thought["Name"] = f"{config.types_prepend_text}{thought['Name']}"
 
     # Process links
     for link in links_data:
