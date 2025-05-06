@@ -1,58 +1,69 @@
-# Moving The Brain Exported Data to Obsidian Vault
+Instructions for Transferring The Brain Exported Data to an Obsidian Vault
 
 ## Context
 
-I am not a developer and a github novice (maybe that will change).  So any pointers to improving the scripts or how I am using github are welcome
-I am also a windows user and I do not have access to a Mac so I am not sure how these scripts work on Macs
+Please note that I am not a developer and possess only basic knowledge of GitHub, though I am open to suggestions for improving the scripts or my use of GitHub. Additionally, as a Windows user without access to a Mac, I cannot confirm the functionality of these scripts on Mac systems.
 
-## How To Run
+## Procedure
 
-1. Download these scripts to a folder
-2. Export your Brain to a folder using the JSON method (these scripts assume the folder is called "export" and is in the root folder of these scripts, this can eb configured in the python file "enduser_config.py")
-3. Create a folder with where you want the converted Brain data to go - your Obsidian Vault.  This vault can be pre-configured to your needs (for example, I use dataview, excalidraw and excalibrain and Tag Wrangler with "Detect All File Extensions" configured (this allows for none-markdown or images files, like .docx, to be visible in the explorer)).
-4. You need to have python installed.  I use the following modules so if the script does not run for you then you may be missing a python module that needs importing using "pip"
-5. Run the script "thebrain2markdown.py" by opening a terminal and typing "python thebrain2markdown.py".
-6. Open Obsidian and open the folder containing your migrated Obsidian data,
+1. **Download the Scripts**: Save the provided scripts to a designated folder.
 
-## What it Does
+2. **Export Brain Data**: Utilize the JSON method to export your Brain data to a folder. The scripts assume this folder is named "export" and is located in the root directory of the scripts. This configuration can be adjusted in the Python file `enduser_config.py`.
+
+3. **Prepare Obsidian Vault**: Establish a folder for the converted Brain data, which will serve as your Obsidian Vault. This vault can be pre-configured to suit your preferences, such as incorporating plugins like Dataview, Excalidraw, Excalibrain, and Tag Wrangler with "Detect All File Extensions" enabled to accommodate non-markdown or image files.
+
+4. **Python Installation**: Ensure Python is installed on your system. The script requires specific modules, which may need to be imported using `pip` if the script fails to execute.
+
+5. **Execute the Script**: Launch the script `thebrain2markdown.py` by opening a terminal and entering the command `python thebrain2markdown.py`.
+
+6. **Access Obsidian**: Open Obsidian and navigate to the folder containing your migrated data.
+
+## Functionality
 
 ### Obsidian Data
 
-- All attachments are placed in a folder called "data".  Files attached to a Brain Thought are migrated to a sub-folder called "documents", embedded images are placed in a sub-folder call "embedded images".  Any folder within your Brain are migrated as the folders and their contents into the "data" folder.
-- All Thoughts are migrated to the root of the Obsidian Folder
-- Types and Tags are not migrated as files so any content you held inside these objects will not be migrated
-- Brain Tags are migrated to the Obsidian Property "tags".  If you have nested Tags in your Brain then these will be recreated
-- Types are not currently migrated
-- Labels are added as Obsidian "Aliases"
-- Private or Public flags on Thoughts are migrated to the "publish" from matter with true or false for public and private respectively
-- An additional property is created called exTheBrain with a value of "yes".  This is so that in the future you can see where this data originated
-- All Child and Jump Throughts are added at the end of the obsidian file in the format suitable for use with Excalibrain (e.g. "Jump:: [[File]])
-- All attached are listed and linked at the bottom of the file.
+* All attachments are organized into a folder named "data". Files attached to a Brain Thought are transferred to a sub-folder called "documents", while embedded images are placed in a sub-folder named "embedded images". Any folders within your Brain are migrated into the "data" folder along with their contents.
 
-### Other Folders and Files Generated
+* All Thoughts are transferred to the root of the Obsidian Folder.
 
-- A Folder called "logs" is created.  This folder contains log files, one for each execution of the script.  I use it for debnugging purposes
-- A folder called "JSONS" is created.  This contains well formatted version of export The Brain "JSON" files "links", "thoughts" and "attachments" prefixed with "TB_Refactored_"  OT
-other files in this folder are generally used for debugging purposes or temporary stores
+* Types and Tags are not migrated as files; thus, any content within these objects will not be transferred.
 
-### enduser_config.py file
+* Brain Tags are converted to the Obsidian Property "tags". Nested Tags in your Brain will be recreated accordingly.
 
-You can edit this file to:
+* Types are not currently migrated.
 
-#### dir_location_of_Brain_folder
+* Labels are converted to Obsidian "Aliases".
 
-- Reference the folder containing your exported Brain files and folder:
-  - For Example dir_location_of_Brain_folder = "./export" looks in the root of the folders containing the python scripts for a folder called "export"
+* Private or Public flags on Thoughts are migrated to the "publish" property with true or false values for public and private, respectively.
 
-#### dir_location_of_obsidian_vault
+* An additional property named `exTheBrain` is created with a value of "yes" to indicate the data's origin.
 
-- Referncing your Obsidian Vault where you want your Brain data migrated to:
-  - For Example dir_location_of_obsidian_vault = "./obsidian" uses a called "obsidian" in the root of the folder containing the python scripts
+* All Child and Jump Thoughts are appended at the end of the Obsidian file in a format compatible with Excalibrain (e.g., `Jump:: [[File]]`).
 
-#### empty_obsidian_vault_dir_prior_to_running_the_script
+* All attachments are listed and linked at the bottom of the file.
 
-- I have found that I need to run Brain exports and migrations a number of times as I discover how my Brain is used with reference to how the migrated data works in Obsidian.  I therefore the script clears out the contents of the dir_location_of_obsidian_vault folder but leaving the contents of the Obsidian folder ".obsidian" else it would be necessary to reconfigure and load plugins after each migration.  However, you might not want to clear out the contents of the folder (maybe if you are migrating to an existing obsidian vault - which I have not tested, but should be possible, but probably quite dangerous, so do some back-ups).  Whether the obsidian vault is cleared down or not before migration is set with the variable empty_obsidian_vault_dir_prior_to_running_the_script to either true of false
+### Additional Folders and Files
 
-#### types_to_tags
+* A folder named "logs" is created to store log files for each script execution, primarily for debugging purposes.
 
-- The type_to_tags is for an idea I have of migrating Brain type as tags so at the moment it doesn't do anything.
+* A folder named "JSONS" is created to contain well-formatted versions of The Brain's exported JSON files, such as "links", "thoughts", and "attachments", prefixed with "TB_Refactored_". Other files in this folder are generally used for debugging or temporary storage.
+
+### Configuration File: `enduser_config.py`
+
+You may modify this file to:
+
+#### `dir_location_of_Brain_folder`
+
+* Specify the folder containing your exported Brain files and folders. For example, `dir_location_of_Brain_folder = "./export"` searches the root directory of the scripts for a folder named "export".
+
+#### `dir_location_of_obsidian_vault`
+
+* Specify the location of your Obsidian Vault for migrating Brain data. For example, `dir_location_of_obsidian_vault = "./obsidian"` uses a folder named "obsidian" in the root directory of the scripts.
+
+#### `empty_obsidian_vault_dir_prior_to_running_the_script`
+
+* The script is designed to clear the contents of the `dir_location_of_obsidian_vault` folder, excluding the ".obsidian" folder, to avoid reconfiguring and loading plugins after each migration. However, you may choose not to clear the folder, especially if migrating to an existing Obsidian vault. This option is controlled by setting the variable `empty_obsidian_vault_dir_prior_to_running_the_script` to either true or false.
+
+#### `types_to_tags`
+
+* The `types_to_tags` variable is intended for a future feature to migrate Brain types as tags, but it is currently inactive.
