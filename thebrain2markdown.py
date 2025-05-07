@@ -180,11 +180,25 @@ def create_thoughts_json_dic_with_links_attachments(
             thought_object = json.load(thoughts_file)
             for thought in thought_object:
                 node_id = thought["Id"]
+                original_name = util.remove_invalid_character(
+                    thought["Name"], "", invalid_file_characters
+                )
+                unique_name = original_name
+
+                # Ensure the thought name is unique
+                counter = 1
+                while any(node["Name"] == unique_name for node in nodes_json.values()):
+                    unique_name = f"{original_name} {str(counter).zfill(3)}"
+                    counter += 1
+
+                if unique_name != original_name:
+                    print(
+                        f"Duplicate file found: {original_name}. Renamed to: {unique_name}"
+                    )
+
                 nodes_json[node_id] = {
                     "ID": node_id,
-                    "Name": util.remove_invalid_character(
-                        thought["Name"], "", invalid_file_characters
-                    ),
+                    "Name": unique_name,
                     "Kind": thought["Kind"],
                     "TypeId": thought.get("TypeId", ""),
                     "ACType": thought.get("ACType", ThoughtAccessType.PUBLIC),
