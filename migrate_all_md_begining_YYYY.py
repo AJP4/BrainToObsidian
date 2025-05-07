@@ -7,7 +7,7 @@ def move_numeric_files(source_dir, target_dir, extension):
     """
     Moves files with numeric filenames matching patterns "YYYY", "YYYY MM", "YYYY MM DD"
     from source_dir to target_dir. Only files with the specified extension are considered.
-    If a file contains no content after the YAML frontmatter, it is deleted instead of being moved.
+    If a file contains no text (empty or only whitespace), it is deleted instead of being moved.
 
     Args:
         source_dir (str): The source directory to search for files.
@@ -38,22 +38,11 @@ def move_numeric_files(source_dir, target_dir, extension):
             # Check if the filename matches the valid date pattern
             filename_without_extension = os.path.splitext(file)[0]
             if valid_date_pattern.match(filename_without_extension):
-                # Check if the file contains content after the YAML frontmatter
+                # Check if the file contains text
                 try:
                     with open(file_path, "r", encoding="utf-8") as f:
-                        lines = f.readlines()
-
-                    # Extract content after the YAML frontmatter
-                    inside_yaml = False
-                    content_after_yaml = []
-                    for line in lines:
-                        if line.strip() == "---":
-                            inside_yaml = not inside_yaml
-                        elif not inside_yaml:
-                            content_after_yaml.append(line.strip())
-
-                    # Check if there is any content after the YAML section
-                    if any(content_after_yaml):  # File has content after YAML
+                        content = f.read().strip()
+                    if content:  # File has text content
                         destination_path = os.path.join(target_dir, file)
                         try:
                             # Move the file to the target directory
@@ -61,7 +50,7 @@ def move_numeric_files(source_dir, target_dir, extension):
                             files_moved += 1
                         except Exception as e:
                             print(f"Error moving file {file_path}: {e}")
-                    else:  # File has no content after YAML
+                    else:  # File is empty or contains only whitespace
                         try:
                             os.remove(file_path)
                             files_deleted += 1
