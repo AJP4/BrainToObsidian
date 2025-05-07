@@ -86,7 +86,7 @@ if config.empty_obsidian_vault_dir_prior_to_running_the_script:
 
 
 # clear down the obsidian vault directory
-util.clear_folder(output_directory)
+util.clear_folder(output_directory, exclude_list=["/.obsidian"])
 
 # convert TheBrain JSON files to a format suitable for Obsidian
 # and save them in the output directory
@@ -167,6 +167,7 @@ def create_attachments_json_dic(attachments_path, attachments_json):
                 )
     except Exception as e:
         logging.error(f"Failed to process attachments.json. Error: {e}")
+        print(f"Failed to process attachments.json. Error: {e}")
 
 
 # Process thoughts.json to build nodes and their metadata
@@ -245,6 +246,7 @@ def create_thoughts_json_dic_with_links_attachments(
                     }
     except Exception as e:
         logging.error(f"Failed to process thoughts.json. Error: {e}")
+        print(f"Failed to process thoughts.json. Error: {e}")
 
 
 def clean_tag_names(list_of_tags):

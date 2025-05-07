@@ -62,7 +62,7 @@ You may modify this file to:
 
 #### `empty_obsidian_vault_dir_prior_to_running_the_script`
 
-* The script is designed to clear the contents of the `dir_location_of_obsidian_vault` folder, excluding the ".obsidian" folder, to avoid reconfiguring and loading plugins after each migration. However, you may choose not to clear the folder, especially if migrating to an existing Obsidian vault. This option is controlled by setting the variable `empty_obsidian_vault_dir_prior_to_running_the_script` to either true or false.
+* The script is designed to clear the contents of the `dir_location_of_obsidian_vault` folder, excluding the ".obsidian" folder, to avoid reconfiguring and loading plugins after each migration. However, you may choose not to clear the folder, especially if migrating to an existing Obsidian vault. This option is controlled by setting the variable `empty_obsidian_vault_dir_prior_to_running_the_script` to either true or false.  Sometime the script is unable to delete folders and sub-folders outside of ".obsidian". If this happens and Error is printed to screen.  I am not sure how to get around this other than manually deleting these folder in a file explorer
 
 #### `types_to_tags`
 

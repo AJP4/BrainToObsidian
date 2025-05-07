@@ -45,25 +45,29 @@ def clear_folder(folder_path, exclude_list=None):
         for item in os.listdir(folder_path):
             if item in exclude_list:
                 logging.info(f"Skipped deletion of excluded item: {item}")
+                print(f"Skipped deletion of excluded item: {item}")
                 continue
 
             item_path = os.path.join(folder_path, item)
             try:
                 if os.path.isfile(item_path) or os.path.islink(item_path):
                     os.unlink(item_path)
-                    # logging.info(f"Deleted file: {item_path}")
+                    logging.info(f"Deleted file: {item_path}")
                 elif os.path.isdir(item_path):
                     shutil.rmtree(item_path)
-                    # logging.info(f"Deleted folder: {item_path}")
+                    logging.info(f"Deleted folder: {item_path}")
             except Exception as e:
                 logging.error(f"Failed to delete {item_path}. Error: {e}")
+                print(f"Failed to delete {item_path}. Error: {e}")
         logging.info(
             f"Cleared content of folder: {folder_path}, excluding: {exclude_list}"
         )
+        print(f"Cleared content of folder: {folder_path}, excluding: {exclude_list}")
     else:
         logging.info(
             f"Folder did not exist: {folder_path}. It will be created if needed."
         )
+        print(f"Folder did not exist: {folder_path}. It will be created if needed.")
 
 
 def Serialise_TBjson_files(input_files, output_directory):
