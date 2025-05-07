@@ -60,7 +60,7 @@ def convert_date_links_in_markdown(folder_path, test_mode=True):
 # Example usage
 if __name__ == "__main__":
     # Specify the folder containing markdown files
-    folder_path = "E:/Brains/Dad"  # Replace with your actual folder path
+    folder_path = "E:/Brains/Dad/files"  # Replace with your actual folder path
 
     # Set test_mode to True to preview changes without modifying files
     test_mode = False
