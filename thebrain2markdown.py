@@ -75,10 +75,14 @@ if config.empty_obsidian_vault_dir_prior_to_running_the_script:
         # Clear the content of the obsidian vault directory, excluding ".obsidian"
         # retain obsidian config files
         util.clear_folder(obsidian_vault_directory, [".obsidian"])
+        print(
+            f"Cleared content of the directory: {obsidian_vault_directory}, excluding .obsidian folder."
+        )
     else:
         # Create the directory if it doesn't exist
         os.makedirs(obsidian_vault_directory)
         logging.info(f"Created directory: {obsidian_vault_directory}")
+        print(f"Created directory: {obsidian_vault_directory}")
 
 
 # clear down the obsidian vault directory
@@ -141,6 +145,7 @@ def create_links_json_dic(links_path, links_json):
                     )
     except Exception as e:
         logging.error(f"Failed to process links.json. Error: {e}")
+        print(f"Failed to process links.json. Error: {e}")
 
 
 # Process attachments.json to map attachments to nodes
@@ -433,6 +438,7 @@ def generate_markdown_files(
 
         except Exception as e:
             logging.error(f"Failed to create markdown file for {node_id}. Error: {e}")
+            print(f"Failed to create markdown file for {node_id}. Error: {e}")
 
 
 if config.types_to_tags:
@@ -493,5 +499,9 @@ generate_markdown_files(
     TheBrain_export_dir,
     obsidian_vault_directory,
 )
+
+# Refactor generated markdown files to replace checkboxes
+mig_funcs.refactor_check_boxes(obsidian_vault_directory)
+
 
 print("Markdown files generated successfully.")

@@ -53,3 +53,56 @@ def convert_types_to_tags(thoughts_file, links_file, backup_folder):
         json.dump(links_data, f, indent=4, ensure_ascii=False)
 
     print("Conversion completed. Original files have been backed up.")
+
+
+def refactor_check_boxes(dir_location_of_obsidian_vault):
+    """
+    Goes through all .md files in the specified folder and replaces:
+    - Lines starting with '+' with '[x]'
+    - Lines starting with '-' with '[ ]'
+    Only processes content below the YAML frontmatter (enclosed by '---').
+    Logs the files that were amended.
+    """
+    print(f"Refactoring checkboxes in: {dir_location_of_obsidian_vault}")
+    for root, _, files in os.walk(dir_location_of_obsidian_vault):
+        for file in files:
+            if file.endswith(".md"):  # Process only .md files
+                file_path = os.path.join(root, file)
+                try:
+                    with open(file_path, "r", encoding="utf-8") as f:
+                        lines = f.readlines()
+
+                    modified = False
+                    updated_lines = []
+                    inside_yaml = (
+                        False  # Track whether we are inside the YAML frontmatter
+                    )
+
+                    for line in lines:
+                        # Detect YAML frontmatter boundaries
+                        if line.strip() == "---":
+                            inside_yaml = not inside_yaml
+                            updated_lines.append(line)
+                            continue
+
+                        # Only process lines outside the YAML frontmatter
+                        if not inside_yaml:
+                            if line.startswith("+"):
+                                updated_lines.append(line.replace("+", "[x]", 1))
+                                modified = True
+                            elif line.startswith("-"):
+                                updated_lines.append(line.replace("-", "[ ]", 1))
+                                modified = True
+                            else:
+                                updated_lines.append(line)
+                        else:
+                            updated_lines.append(line)
+
+                    if modified:
+                        with open(file_path, "w", encoding="utf-8") as f:
+                            f.writelines(updated_lines)
+                            print(f"Amended file, checkboxes in: {file_path}")
+
+                except Exception as e:
+                    print(f"Error processing file {file_path}: {e}")
+    print(f"Refactored checkboxes in: {dir_location_of_obsidian_vault}")
