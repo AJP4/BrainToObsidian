@@ -4,4 +4,8 @@ export/
 JSONS/
 logs/
 obsidian/
+<<<<<<< HEAD
+=======
+Obsidian Wrangling Scripts/Square_brack_to_Checkbox.py
+>>>>>>> hotfix
 Obsidian Wrangling Scripts/runner.py
