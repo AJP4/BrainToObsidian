@@ -88,10 +88,10 @@ def refactor_check_boxes(dir_location_of_obsidian_vault):
                         # Only process lines outside the YAML frontmatter
                         if not inside_yaml:
                             if line.startswith("+"):
-                                updated_lines.append(line.replace("+", "[x]", 1))
+                                updated_lines.append(line.replace("+", "- [x]", 1))
                                 modified = True
                             elif line.startswith("-"):
-                                updated_lines.append(line.replace("-", "[ ]", 1))
+                                updated_lines.append(line.replace("-", "- [ ]", 1))
                                 modified = True
                             else:
                                 updated_lines.append(line)
